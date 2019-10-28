@@ -1,2 +1,9 @@
-<h1><%= @content.inspect %></h1>
-<h2>- <%= @content.name %></h2>
+<% @content.each do |content| %>
+  <div>
+    <h1><%= content.name %></h1><br />
+    <i><%= content.address %></i><br />
+    <p><%= content.description %></p><br />
+  </div>
+
+  <hr />
+<% end %>

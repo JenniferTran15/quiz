@@ -1,7 +1,7 @@
 class ContentController < ApplicationController
 
   def index
-    @content = Content.order("RANDOM()").first
+    @content = Content.all
   end
 
 end
