@@ -3,5 +3,9 @@
     <h1><%= content.name %></h1>
     <i><%= content.address %></i><br /><br />
     <p><%= content.description %></p><br />
+
+    <% if content.user.present? %>
+      <small><%= content.user.email %></small>
+    <% end %>
   </div>
 <% end %>

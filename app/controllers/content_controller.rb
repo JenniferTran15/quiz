@@ -1,4 +1,5 @@
 class ContentController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @content = Content.all
@@ -9,7 +10,7 @@ class ContentController < ApplicationController
   end
 
   def create
-    Content.create(content_params)
+    current_user.places.create(place_params)
     redirect_to root_path
   end
 
