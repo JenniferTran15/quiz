@@ -10,7 +10,7 @@ class ContentController < ApplicationController
   end
 
   def create
-    current_user.places.create(content_params)
+    current_user.content.create(content_params)
     redirect_to root_path
   end
 
@@ -25,6 +25,12 @@ class ContentController < ApplicationController
   def update
     @content = Content.find(params[:id])
     @content.update_attributes(content_params)
+    redirect_to root_path
+  end
+
+  def destroy
+    @content = Content.find(params[:id])
+    @content.destroy
     redirect_to root_path
   end
 
