@@ -10,11 +10,15 @@ class ContentController < ApplicationController
   end
 
   def create
-    current_user.places.create(place_params)
+    current_user.places.create(content_params)
     redirect_to root_path
   end
 
   def show
+    @content = Content.find(params[:id])
+  end
+
+  def edit
     @content = Content.find(params[:id])
   end
 
