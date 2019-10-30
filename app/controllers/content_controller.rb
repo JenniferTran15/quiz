@@ -22,6 +22,12 @@ class ContentController < ApplicationController
     @content = Content.find(params[:id])
   end
 
+  def update
+    @content = Content.find(params[:id])
+    @content.update_attributes(content_params)
+    redirect_to root_path
+  end
+
   private
 
   def content_params
