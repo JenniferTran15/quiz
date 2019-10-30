@@ -14,6 +14,10 @@ class ContentController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @content = Content.find(params[:id])
+  end
+
   private
 
   def content_params
