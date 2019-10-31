@@ -21,6 +21,7 @@ class ContentController < ApplicationController
   def show
     @content = Content.find(params[:id])
     @comment = Comment.new
+    @photo = Photo.new
   end
 
   def edit

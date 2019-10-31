@@ -107,7 +107,7 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Add a Photo</h4>
       </div>
-      <%= simple_form_for @photo, url: content_photos_path(@content do |f| %>
+      <%= simple_form_for @photo, url: content_photos_path(@content) do |f| %>
           <div class="modal-body">
             <%= f.input :picture %>
             <%= f.input :caption %>
