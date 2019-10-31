@@ -10,8 +10,12 @@ class ContentController < ApplicationController
   end
 
   def create
-    current_user.contents.create(content_params)
-    redirect_to root_path
+    @content = current_user.contents.create(content_params)
+    if @content.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -28,12 +32,17 @@ class ContentController < ApplicationController
 
   def update
     @content = Content.find(params[:id])
+
     if @content.user != current_user
       return render plain: 'Not Allowed', status: :forbidden
     end 
 
     @content.update_attributes(content_params)
-    redirect_to root_path
+    if @content.valid?
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -41,7 +50,7 @@ class ContentController < ApplicationController
     if @content.user != current_user
       return render plain: 'Not Allowed', status: :forbidden
     end
-    
+
     @content.destroy
     redirect_to root_path
   end
