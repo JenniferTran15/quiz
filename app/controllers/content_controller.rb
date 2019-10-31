@@ -1,5 +1,5 @@
 class ContentController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
     @content = Content.all
@@ -10,7 +10,7 @@ class ContentController < ApplicationController
   end
 
   def create
-    current_user.content.create(content_params)
+    current_user.contents.create(content_params)
     redirect_to root_path
   end
 
@@ -20,10 +20,18 @@ class ContentController < ApplicationController
 
   def edit
     @content = Content.find(params[:id])
+
+    if @content.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
+    end
   end
 
   def update
     @content = Content.find(params[:id])
+    if @place.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
+    end 
+    
     @content.update_attributes(content_params)
     redirect_to root_path
   end
