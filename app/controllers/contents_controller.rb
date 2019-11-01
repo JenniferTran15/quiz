@@ -56,6 +56,7 @@ class ContentsController < ApplicationController
     @content.destroy
     redirect_to root_path
   end
+  
 
   private
 
