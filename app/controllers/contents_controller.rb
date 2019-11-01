@@ -1,8 +1,8 @@
-class ContentController < ApplicationController
+class ContentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :validates]
 
   def index
-    @content = Content.all
+    @contents = Content.all
   end
 
   def new
@@ -62,5 +62,4 @@ class ContentController < ApplicationController
   def content_params
     params.require(:content).permit(:name, :description, :address)
   end
-
 end

@@ -1,0 +1,23 @@
+<% @contents.each do |content| %>
+  <div class="booyah-box col-10 offset-1">
+    <h1><%= link_to content.name, content_path(content) %></h1><br />
+    <i><%= content.address %></i><br /><br />
+    <p><%= content.description %></p><br />
+
+    <% if content.user.present? %>
+      <small><%= content.user.email %></small>
+    <% end %>
+
+    <% if content.comments.present? %>
+      <div class="col-12 col-sm-6">
+        <blockquote>
+          <% if content.comments.last.humanized_rating.present? %>
+            <b><%= content.comments.last.humanized_rating %></b> -
+          <% end %>
+          <%= content.comments.last.message %>
+          <small><%= content.comments.last.user.email %></small>
+        </blockquote>
+      </div>
+    <% end %>
+  </div>
+<% end %>
